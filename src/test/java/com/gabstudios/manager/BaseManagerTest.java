@@ -42,6 +42,7 @@ public class BaseManagerTest
     {
         this._manager = new BaseManager<MockManageableImpl>();
     }
+  
     
     @Test
     public void testCreateChildWithClassKey()
@@ -129,6 +130,12 @@ public class BaseManagerTest
     public void testManagerCreation()
     {
         Assert.assertTrue(this._manager != null);
+    }
+    
+    @Test
+    public void testManagerToString()
+    {
+        Assert.assertTrue(this._manager.toString() != null);
     }
     
     @Test
