@@ -51,5 +51,5 @@ Comments and feedback are greatly appreciated!!!
 
 
 [Copyright 2019 Gregory Brown]: https://github.com/gab-studios/gab-manager/tree/master/COPYRIGHT.md
-[Apache v2.0 License]: https://github.com/gab-studios/gab-manager/tree/master/LICENSE.txt
+[Apache v2.0 License]: https://github.com/gab-studios/gab-manager/tree/master/LICENSE.md
 [wiki]: https://github.com/gab-studios/gab-manager/wiki
