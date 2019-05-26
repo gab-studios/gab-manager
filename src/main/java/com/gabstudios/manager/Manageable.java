@@ -39,16 +39,8 @@ public abstract interface Manageable
     public abstract void close();
     
     /**
-     * Used by Manager as a callback when the Manager.close() method is
-     * called. Closes down the child by releasing all referenced members. Does
-     * not call the Manager.closeChild(key). The Manager.closeChild(key) calls
-     * back to this method.
-     */
-    public abstract void closeWithoutRemove();
-    
-    /**
-     * Gets the key associated with this ManagerChild. This should return the
-     * key value that was assigned when the ManagerChild.initialize(parent,key)
+     * Gets the key associated with this Manageable. This should return the
+     * key value that was assigned when the Manageable.initialize(parent,key)
      * was called.
      * 
      * @return A <code> String </code> instance.
@@ -56,9 +48,9 @@ public abstract interface Manageable
     public abstract String getKey();
     
     /**
-     * Gets the parent that this ManagerChild belongs too. This should return
+     * Gets the parent that this Manageable belongs too. This should return
      * the parent reference that was assigned when the
-     * ManagerChild.initialize(parent,key) was called.
+     * Manageable.initialize(parent,key) was called.
      * 
      * @param <P> An instance that extends <code>Manager</code>.
      * @return <P> An instance that extends <code>Manager</code>.
@@ -66,7 +58,7 @@ public abstract interface Manageable
     public abstract <P extends Manager> P getParent();
     
     /**
-     * Initializes the ManagerChild.
+     * Initializes the Manageable.
      * 
      * @param <P> An instance that extends <code>Manager</code>.
      * @param parent
@@ -75,7 +67,7 @@ public abstract interface Manageable
      * 
      * @param key
      *            A <code>String</code> instance that is the key associated with
-     *            this child. ManagerChild.getKey() should return this value.
+     *            this child. Manageable.getKey() should return this value.
      */
     public abstract <P extends Manager> void initialize(final P parent, final String key);
     

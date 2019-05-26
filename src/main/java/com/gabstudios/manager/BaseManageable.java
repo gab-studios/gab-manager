@@ -60,35 +60,13 @@ public class BaseManageable implements Manageable
 		{
 			assert (this._key != null) : "close(): the key is null.";
 			assert (this._parent != null) : "close(): the parent is null.";
-			this._parent.closeChild(this._key);
+			if (this._parent.containsChild(this._key))
+			{
+				this._parent.closeChild(this._key);
+			}
 			this._parent = null;
 			this._isClosed = true;
 			// this._key = null;
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.gabstudios.manager.Manageable#closeWithoutRemove()
-	 */
-	@Override
-	public void closeWithoutRemove()
-	{
-		if (this._isClosed)
-		{
-			throw (new ManagerClosedException("This ManagerChild has been closed and may not be used."));
-		}
-		else
-		{
-			assert (this._key != null) : "close(): the key is null.";
-			assert (this._parent != null) : "close(): the parent is null.";
-			// release the reference to the parent.
-			// DO NOT CLOSE IT.
-			this._parent = null;
-			this._isClosed = true;
-			// this._key = null;
-
 		}
 	}
 

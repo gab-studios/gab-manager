@@ -197,10 +197,12 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 			        .throwValidationExceptionOnFail().validate();
 
 			@SuppressWarnings("unchecked")
+			
+			
 			final C child = this._children.remove(key);
 			if (child != null)
 			{
-				child.closeWithoutRemove();
+				child.close();
 				assert (!this._children.containsKey(child
 				        .getKey())) : "The children table still contains the manager child when the manager child was closed.";
 			}
