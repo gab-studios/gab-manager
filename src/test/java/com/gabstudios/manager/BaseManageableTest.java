@@ -52,7 +52,7 @@ public class BaseManageableTest
         {
             final Manageable child = this._manager
                     .create(BaseManageable.class);
-            Assert.assertTrue(child.getParent() == this._manager);
+            Assert.assertTrue(child.getParent().equals(this._manager));
  
         }
         catch (final ManageableExistsException e)
@@ -112,6 +112,26 @@ public class BaseManageableTest
             BaseManageable manageable = new BaseManageable();
             manageable.initialize(this._manager, className);
             Assert.assertTrue(child.equals(manageable));
+ 
+        }
+        catch (final ManageableExistsException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    @Test
+    public void testEquals2()
+    {
+        Assert.assertTrue(this._manager != null);
+        final String className = "com.gabstudios.manager.BaseManageable";
+        try
+        {
+            final Manageable child = this._manager
+                    .create(BaseManageable.class);
+            Assert.assertTrue(child != null);
+            Assert.assertTrue(child.equals(child));
  
         }
         catch (final ManageableExistsException e)
