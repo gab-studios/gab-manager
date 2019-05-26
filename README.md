@@ -1,3 +1,4 @@
+Master | [![Build Status](https://travis-ci.org/gab-studios/gab-manager.svg?branch=master)](https://travis-ci.org/gab-studios/gab-manager) | [![codecov.io](https://codecov.io/github/gab-studios/gab-manager/coverage.svg?branch=master)](https://codecov.io/github/gab-studios/gab-manager?branch=master)
 
 GAB-Manager
 =======
