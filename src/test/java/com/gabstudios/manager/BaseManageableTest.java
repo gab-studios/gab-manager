@@ -43,16 +43,52 @@ public class BaseManageableTest
         this._manager = new BaseManager<BaseManageable>();
     }
     
+    
+    @Test
+    public void testGetParent()
+    {
+        Assert.assertTrue(this._manager != null);
+        try
+        {
+            final Manageable child = this._manager
+                    .create(BaseManageable.class);
+            Assert.assertTrue(child.getParent() == this._manager);
+ 
+        }
+        catch (final ManageableExistsException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
     @Test
     public void testToString()
     {
         Assert.assertTrue(this._manager != null);
-        final String className = "com.gabstudios.manager.BaseManageable";
         try
         {
             final Manageable child = this._manager
                     .create(BaseManageable.class);
             Assert.assertTrue(child.toString() != null);
+ 
+        }
+        catch (final ManageableExistsException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    @Test
+    public void testHashcode()
+    {
+        Assert.assertTrue(this._manager != null);
+        try
+        {
+            final Manageable child = this._manager
+                    .create(BaseManageable.class);
+            Assert.assertTrue(child.hashCode() != 0);
  
         }
         catch (final ManageableExistsException e)
