@@ -35,12 +35,54 @@ import com.gabstudios.manager.impl.MockManageableImpl;
 public class BaseManageableTest
 {
     
-    Manager<MockManageableImpl> _manager;
+    Manager<BaseManageable> _manager;
     
     @Before
     public void setup()
     {
-        this._manager = new BaseManager<MockManageableImpl>();
+        this._manager = new BaseManager<BaseManageable>();
+    }
+    
+    @Test
+    public void testToString()
+    {
+        Assert.assertTrue(this._manager != null);
+        final String className = "com.gabstudios.manager.BaseManageable";
+        try
+        {
+            final Manageable child = this._manager
+                    .create(BaseManageable.class);
+            Assert.assertTrue(child.toString() != null);
+ 
+        }
+        catch (final ManageableExistsException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    @Test
+    public void testEquals()
+    {
+        Assert.assertTrue(this._manager != null);
+        final String className = "com.gabstudios.manager.BaseManageable";
+        try
+        {
+            final Manageable child = this._manager
+                    .create(BaseManageable.class);
+            Assert.assertTrue(child != null);
+            
+            BaseManageable manageable = new BaseManageable();
+            manageable.initialize(this._manager, className);
+            Assert.assertTrue(child.equals(manageable));
+ 
+        }
+        catch (final ManageableExistsException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
     }
   
     
@@ -48,11 +90,11 @@ public class BaseManageableTest
     public void testClose()
     {
         Assert.assertTrue(this._manager != null);
-        final String className = "com.gabstudios.manager.impl.MockManageableImpl";
+        final String className = "com.gabstudios.manager.BaseManageable";
         try
         {
             final Manageable child = this._manager
-                    .create(MockManageableImpl.class);
+                    .create(BaseManageable.class);
             Assert.assertTrue(child != null);
             Assert.assertTrue(child instanceof BaseManageable);
             Assert.assertTrue(className.equals(child.getKey()));
