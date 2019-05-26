@@ -58,16 +58,6 @@ public class ManagerException extends RuntimeException
     {
         super(message, null);
     }
-    
-    /**
-     * Constructor with a throwable.
-     * 
-     * @param throwable
-     *            An instance of <code>Throwable</code>.
-     */
-    public ManagerException(final Throwable throwable)
-    {
-        this(throwable.getMessage(), throwable);
-    }
+   
     
 }

@@ -59,15 +59,5 @@ public class ManageableExistsException extends Exception
         super(message, null);
     }
     
-    /**
-     * Constructor with a throwable.
-     * 
-     * @param throwable
-     *            An instance of <code>Throwable</code>.
-     */
-    public ManageableExistsException(final Throwable throwable)
-    {
-        this(throwable.getMessage(), throwable);
-    }
     
 }

@@ -45,29 +45,5 @@ public class ManagerClosedException extends ManagerException
         super(message);
     }
     
-    /**
-     * Constructor with both a message and a throwable.
-     * 
-     * @param message
-     *            A <code>String</code> message.
-     * @param throwable
-     *            An instance of <code>Throwable</code>.
-     */
-    public ManagerClosedException(final String message,
-            final Throwable throwable)
-    {
-        super(message, throwable);
-    }
-    
-    /**
-     * Constructor with a throwable.
-     * 
-     * @param throwable
-     *            An instance of <code>Throwable</code>.
-     */
-    public ManagerClosedException(final Throwable throwable)
-    {
-        super(throwable);
-    }
     
 }
