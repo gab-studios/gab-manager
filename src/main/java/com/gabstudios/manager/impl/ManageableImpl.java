@@ -14,8 +14,11 @@
  *****************************************************************************************
  */
 
-package com.gabstudios.manager;
+package com.gabstudios.manager.impl;
 
+import com.gabstudios.manager.Manageable;
+import com.gabstudios.manager.Manager;
+import com.gabstudios.manager.ManagerClosedException;
 import com.gabstudios.validate.Validate;
 
 /**
@@ -24,7 +27,7 @@ import com.gabstudios.validate.Validate;
  *
  * @author Gregory Brown (sysdevone)
  */
-public class BaseManageable implements Manageable
+public class ManageableImpl implements Manageable
 {
 	// P = parent
 	// C = child
@@ -90,7 +93,7 @@ public class BaseManageable implements Manageable
 		{
 			return false;
 		}
-		final BaseManageable other = (BaseManageable) obj;
+		final ManageableImpl other = (ManageableImpl) obj;
 		if (this._key == null)
 		{
 			if (other._key != null)

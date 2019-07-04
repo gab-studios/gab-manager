@@ -14,13 +14,18 @@
  *****************************************************************************************
  */
 
-package com.gabstudios.manager;
+package com.gabstudios.manager.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.gabstudios.manager.Manageable;
+import com.gabstudios.manager.ManageableExistsException;
+import com.gabstudios.manager.Manager;
+import com.gabstudios.manager.ManagerClosedException;
+import com.gabstudios.manager.ManagerException;
 import com.gabstudios.validate.Validate;
 
 /**
@@ -48,7 +53,7 @@ import com.gabstudios.validate.Validate;
  *
  * @author Gregory Brown (sysdevone)
  */
-public class BaseManager<C extends Manageable> implements Manager<C>
+public class ManagerImpl<C extends Manageable> implements Manager<C>
 {
 	/**
 	 * The maximum length a key can be.
@@ -127,7 +132,7 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 	/*
 	 * initializes the children table.
 	 */
-	public BaseManager()
+	public ManagerImpl()
 	{
 		this._children = new HashMap<>();
 		this._isClosed = false;
@@ -193,7 +198,7 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 		}
 		else
 		{
-			Validate.defineString(key).testNotNullEmpty().testMaxLength(BaseManager.KEY_MAX_LENGTH)
+			Validate.defineString(key).testNotNullEmpty().testMaxLength(ManagerImpl.KEY_MAX_LENGTH)
 			        .throwValidationExceptionOnFail().validate();
 
 			@SuppressWarnings("unchecked")
@@ -224,7 +229,7 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 		}
 		else
 		{
-			Validate.defineString(key).testNotNullEmpty().testMaxLength(BaseManager.KEY_MAX_LENGTH)
+			Validate.defineString(key).testNotNullEmpty().testMaxLength(ManagerImpl.KEY_MAX_LENGTH)
 			        .throwValidationExceptionOnFail().validate();
 			return (this._children.containsKey(key));
 		}
@@ -271,9 +276,9 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 	@Override
 	public C create(final String key, final String className) throws ManageableExistsException
 	{
-		Validate.defineString(key).testNotNullEmpty().testMaxLength(BaseManager.KEY_MAX_LENGTH)
+		Validate.defineString(key).testNotNullEmpty().testMaxLength(ManagerImpl.KEY_MAX_LENGTH)
 		        .throwValidationExceptionOnFail().validate();
-		Validate.defineString(className).testNotNullEmpty().testMaxLength(BaseManager.CLASS_NAME_MAX_LENGTH)
+		Validate.defineString(className).testNotNullEmpty().testMaxLength(ManagerImpl.CLASS_NAME_MAX_LENGTH)
 		        .throwValidationExceptionOnFail().validate();
 
 		final C child = this.loadAndStoreManageable(key, className);
@@ -295,7 +300,7 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 		}
 		else
 		{
-			Validate.defineString(key).testNotNullEmpty().testMaxLength(BaseManager.KEY_MAX_LENGTH)
+			Validate.defineString(key).testNotNullEmpty().testMaxLength(ManagerImpl.KEY_MAX_LENGTH)
 			        .throwValidationExceptionOnFail().validate();
 			// TODO - can make max length check based on the max length of a registered key.
 
@@ -390,7 +395,7 @@ public class BaseManager<C extends Manageable> implements Manager<C>
 			}
 			else
 			{
-				C child = BaseManager.loadManageable(className);
+				C child = ManagerImpl.loadManageable(className);
 				child = this.addToChildTable(key, child);
 				return (child);
 			}

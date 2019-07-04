@@ -19,15 +19,13 @@
 
 package com.gabstudios.manager.impl;
 
-import com.gabstudios.manager.BaseManageable;
-
 /**
  * 
  * A Mock object for testing the Manager.
  * 
  * @author Gregory Brown (sysdevone)
  */
-public class MockManageableImpl extends BaseManageable
+public class MockManageableImpl extends ManageableImpl
 {
     // void for now.
 }

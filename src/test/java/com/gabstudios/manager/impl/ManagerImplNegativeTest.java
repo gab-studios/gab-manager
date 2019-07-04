@@ -14,13 +14,15 @@
  ***************************************************************************************** 
  */
 
-package com.gabstudios.manager;
+package com.gabstudios.manager.impl;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.gabstudios.manager.impl.MockManageableImpl;
+import com.gabstudios.manager.Manageable;
+import com.gabstudios.manager.ManageableExistsException;
+import com.gabstudios.manager.Manager;
 
 /**
  * 
@@ -28,7 +30,7 @@ import com.gabstudios.manager.impl.MockManageableImpl;
  * 
  * @author Gregory Brown (sysdevone)
  */
-public class BaseManagerNegativeTest
+public class ManagerImplNegativeTest
 {
 
 	Manager<MockManageableImpl> _manager;
@@ -36,7 +38,7 @@ public class BaseManagerNegativeTest
 	@Before
 	public void setup()
 	{
-		this._manager = new BaseManager<MockManageableImpl>();
+		this._manager = new ManagerImpl<MockManageableImpl>();
 	}
 
 	@Test
@@ -48,12 +50,12 @@ public class BaseManagerNegativeTest
 		{
 			Manageable child = this._manager.create(MockManageableImpl.class);
 			Assert.assertTrue(child != null);
-			Assert.assertTrue(child instanceof BaseManageable);
+			Assert.assertTrue(child instanceof ManageableImpl);
 			Assert.assertTrue(className.equals(child.getKey()));
 
 			child = this._manager.create(MockManageableImpl.class);
 			Assert.assertTrue(child != null);
-			Assert.assertTrue(child instanceof BaseManageable);
+			Assert.assertTrue(child instanceof ManageableImpl);
 			Assert.assertTrue(className.equals(child.getKey()));
 			
 			Assert.fail();

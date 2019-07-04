@@ -17,13 +17,15 @@
  ***************************************************************************************** 
  */
 
-package com.gabstudios.manager;
+package com.gabstudios.manager.impl;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.gabstudios.manager.impl.MockManageableImpl;
+import com.gabstudios.manager.Manageable;
+import com.gabstudios.manager.ManageableExistsException;
+import com.gabstudios.manager.Manager;
 
 
 /**
@@ -32,62 +34,32 @@ import com.gabstudios.manager.impl.MockManageableImpl;
  * 
  * @author Gregory Brown (sysdevone)
  */
-public class BaseManageableNegativeTest
+public class ManageableImplTest
 {
     
-    Manager<BaseManageable> _manager;
+    Manager<ManageableImpl> _manager;
     
     @Before
     public void setup()
     {
-        this._manager = new BaseManager<BaseManageable>();
+        this._manager = new ManagerImpl<ManageableImpl>();
     }
     
     
     @Test
-    public void testCloseException()
+    public void testGetParent()
     {
         Assert.assertTrue(this._manager != null);
         try
         {
             final Manageable child = this._manager
-                    .create(BaseManageable.class);
-            child.close();
-            child.close();
-            Assert.fail();
+                    .create(ManageableImpl.class);
+            Assert.assertTrue(child.getParent().equals(this._manager));
  
         }
         catch (final ManageableExistsException e)
         {
             Assert.fail(e.toString());
-        }
-        catch (final ManagerClosedException e)
-        {
-        	Assert.assertTrue(true);
-        }
-        
-    }
-    
-    @Test
-    public void testCloseException2()
-    {
-        Assert.assertTrue(this._manager != null);
-        try
-        {
-            final Manageable child = this._manager
-                    .create(BaseManageable.class);
-            child.close();
-            child.getParent();
-            Assert.fail();
- 
-        }
-        catch (final ManageableExistsException e)
-        {
-            Assert.fail(e.toString());
-        }
-        catch (final ManagerClosedException e)
-        {
-        	Assert.assertTrue(true);
         }
         
     }
@@ -99,7 +71,7 @@ public class BaseManageableNegativeTest
         try
         {
             final Manageable child = this._manager
-                    .create(BaseManageable.class);
+                    .create(ManageableImpl.class);
             Assert.assertTrue(child.toString() != null);
  
         }
@@ -117,7 +89,7 @@ public class BaseManageableNegativeTest
         try
         {
             final Manageable child = this._manager
-                    .create(BaseManageable.class);
+                    .create(ManageableImpl.class);
             Assert.assertTrue(child.hashCode() != 0);
  
         }
@@ -132,14 +104,14 @@ public class BaseManageableNegativeTest
     public void testEquals()
     {
         Assert.assertTrue(this._manager != null);
-        final String className = "com.gabstudios.manager.BaseManageable";
+        final String className = "com.gabstudios.manager.impl.ManageableImpl";
         try
         {
             final Manageable child = this._manager
-                    .create(BaseManageable.class);
+                    .create(ManageableImpl.class);
             Assert.assertTrue(child != null);
             
-            BaseManageable manageable = new BaseManageable();
+            ManageableImpl manageable = new ManageableImpl();
             manageable.initialize(this._manager, className);
             Assert.assertTrue(child.equals(manageable));
  
@@ -155,11 +127,11 @@ public class BaseManageableNegativeTest
     public void testEquals2()
     {
         Assert.assertTrue(this._manager != null);
-        final String className = "com.gabstudios.manager.BaseManageable";
+        final String className = "com.gabstudios.manager.impl.ManageableImpl";
         try
         {
             final Manageable child = this._manager
-                    .create(BaseManageable.class);
+                    .create(ManageableImpl.class);
             Assert.assertTrue(child != null);
             Assert.assertTrue(child.equals(child));
  
@@ -176,13 +148,13 @@ public class BaseManageableNegativeTest
     public void testClose()
     {
         Assert.assertTrue(this._manager != null);
-        final String className = "com.gabstudios.manager.BaseManageable";
+        final String className = "com.gabstudios.manager.impl.ManageableImpl";
         try
         {
             final Manageable child = this._manager
-                    .create(BaseManageable.class);
+                    .create(ManageableImpl.class);
             Assert.assertTrue(child != null);
-            Assert.assertTrue(child instanceof BaseManageable);
+            Assert.assertTrue(child instanceof ManageableImpl);
             Assert.assertTrue(className.equals(child.getKey()));
             
             child.close();
